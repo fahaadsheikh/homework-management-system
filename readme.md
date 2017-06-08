@@ -1,5 +1,3 @@
-#DEV
-
 ## 1- A User
 	### A User has roles
 	###  Roles have permissions
