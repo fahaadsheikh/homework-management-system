@@ -22,3 +22,28 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+/* Factory to create new courses */
+
+$factory->define(App\Course::class, function ($faker) {
+
+	// Random datetime within a week
+	$startingDate = $faker->dateTimeBetween('this week', '+6 days');
+	// Random datetime of the current week *after* `$startingDate`
+	$endingDate   = $faker->dateTimeBetween($startingDate, '+3 months');
+
+	return [
+		'user_id'		=> function() {
+			return factory('App\User')->create()->id;
+		},
+		'title' 		=> $faker->sentence,
+		'body'			=> $faker->paragraph,
+		'country' 		=> $faker->country,
+		'city'			=> $faker->city,
+		'address'		=> $faker->address,
+		'start_date'	=> $startingDate,
+		'end_date'		=> $endingDate,
+		'price'			=> $faker->numberBetween($min = 1, $max = 10) * 100  
+	];
+});
