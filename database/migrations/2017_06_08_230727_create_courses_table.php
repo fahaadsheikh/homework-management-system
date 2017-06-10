@@ -21,9 +21,6 @@ class CreateCoursesTable extends Migration
             $table->string("country");
             $table->string("city");
             $table->string("address");
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->bigInteger('price');
             $table->timestamps();
         });
     }

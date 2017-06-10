@@ -20,3 +20,12 @@
 	###  An event will have a location
 	###  An event will have a schedule
 	###  An event will have pricing 
+
+
+Dev Docs
+
+To create seeding data
+
+$courses = factory('App\Course', 50)->create()
+
+$courses->each(function ($course) { factory('App\Batch', 10)->create(['parent_id' => $course->id]); })
