@@ -22,7 +22,8 @@ class CoursesTest extends TestCase
     public function setup()
     {
         parent::setup();
-        $this->course = factory('App\Course')->create();
+        $this->course   = factory('App\Course')->create();
+        $this->user     = factory('App\User')->create();
     }
 
     /**
@@ -42,7 +43,7 @@ class CoursesTest extends TestCase
     public function test_a_user_can_view_single_course() 
     {
         // Mock user Authentification
-        $this->mockUser();
+         $this->mockUser();
         $this->get('/courses/' . $this->course->id)
          ->assertSee($this->course->title);
     }
@@ -50,7 +51,7 @@ class CoursesTest extends TestCase
     public function test_a_user_can_view_batches_within_the_associated_course() 
     {
         // Create a sample batch
-        $batch = factory('App\Batch')->create(['course_id' => $this->course->id]);   
+        $batch = factory('App\Batch')->create(['course_id' => $this->course->id, 'user_id' => $this->user->id]);   
         
         // Mock user Authentification
         $this->mockUser();

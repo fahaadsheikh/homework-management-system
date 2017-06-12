@@ -86,6 +86,7 @@ $factory->define(App\Batch::class, function ($faker) {
 	$createbatchforcourse[] = [
 		'user_id'		=> App\User::all()->random()->id,
 		'parent_id'		=> App\Course::all()->random()->id,
+		'parent_type'	=> 'App\Course',
 		'start_date'	=> $startingDate,
 		'end_date'		=> $endingDate,
 		'start_time'	=> $startingTime,
@@ -98,6 +99,7 @@ $factory->define(App\Batch::class, function ($faker) {
 	$createbatchforcourse[] = [
 		'user_id'		=> App\User::all()->random()->id,
 		'parent_id'		=> App\Event::all()->random()->id,
+		'parent_type'	=> 'App\Event',
 		'start_date'	=> $startingDate,
 		'end_date'		=> $endingDate,
 		'start_time'	=> $startingTime,
