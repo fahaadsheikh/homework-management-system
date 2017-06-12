@@ -7,11 +7,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">
-                    @foreach ($courses as $course)
+                    @foreach ($batches as $batch)
                         <article>
-                            <a href="{{ $course->path() }}">
-                                <h3>{{ $course->title }}</h3>
-                            </a>
+                            <h3>{{ $batch->title }}</h3>
                         </article>
                     @endforeach
                 </div>

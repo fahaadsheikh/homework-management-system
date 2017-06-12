@@ -19,4 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/courses', 'CourseController@index')->name('course');
+Route::resource('courses', 'CourseController');
+
+Route::resource('events', 'EventController');
+
+Route::resource('people', 'PeopleController');
+
+Route::resource('batches', 'BatchController');
+

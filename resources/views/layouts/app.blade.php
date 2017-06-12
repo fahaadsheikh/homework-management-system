@@ -41,6 +41,10 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ route('courses.index') }}">Courses</a></li>
+                        <li><a href="{{ route('events.index') }}">Events</a></li>
+                        <li><a href="{{ route('people.index') }}">People</a></li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
