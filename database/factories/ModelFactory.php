@@ -28,9 +28,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\People::class, function ($faker) {
 
 	return [
-		'user_id'		=> function() {
-			return factory('App\User')->create()->id;
-		},
+		'user_id'			=> App\User::all()->random()->id,
 		'first_name' 		=> $faker->firstName,
 		'last_name'			=> $faker->lastName,
 		'email' 			=> $faker->unique()->safeEmail,
@@ -48,9 +46,7 @@ $factory->define(App\People::class, function ($faker) {
 $factory->define(App\Course::class, function ($faker) {
 
 	return [
-		'user_id'		=> function() {
-			return factory('App\User')->create()->id;
-		},
+		'user_id'		=> App\User::all()->random()->id,
 		'title' 		=> $faker->sentence,
 		'body'			=> $faker->paragraph,
 		'country' 		=> $faker->country,
