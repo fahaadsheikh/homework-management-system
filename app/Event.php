@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use batchable;
-    
-    /**
-     * An Event could have many batches
+
+    /*
+	 * Return path of a single event
      */
-    public function batch()
+    public function path() 
     {
-        return $this->hasMany('App\Batch');
+        return 'courses/' . $this->id;
     }
 }

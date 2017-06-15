@@ -13,7 +13,8 @@ class Course extends Model
 	 * Return path of a single course
      */
 
-    public function path() {
+    public function path() 
+    {
     	return 'courses/' . $this->id;
     }
 }

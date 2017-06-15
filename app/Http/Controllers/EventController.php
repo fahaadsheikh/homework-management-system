@@ -31,7 +31,7 @@ class EventController extends Controller
     {
         // TODO: Commenting
 
-        $events = DB::table('events')->get();
+        $events = Event::all();
         return view('event.index', ['events' => $events]);
     }
 
