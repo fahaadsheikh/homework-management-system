@@ -22,3 +22,104 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/*Factory to create new people*/
+
+$factory->define(App\Participant::class, function ($faker) {
+
+	return [
+		'user_id'			=> App\User::all()->random()->id,
+		'first_name' 		=> $faker->firstName,
+		'last_name'			=> $faker->lastName,
+		'email' 			=> $faker->unique()->safeEmail,
+		'contact_no'		=> $faker->e164PhoneNumber,
+		'country' 			=> $faker->country,
+		'city'				=> $faker->city,
+		'address'			=> $faker->address
+	];
+});
+
+
+
+/* Factory to create new courses */
+
+$factory->define(App\Course::class, function ($faker) {
+
+	return [
+		'user_id'		=> App\User::all()->random()->id,
+		'title' 		=> $faker->sentence,
+		'body'			=> $faker->paragraph,
+		'country' 		=> $faker->country,
+		'city'			=> $faker->city,
+		'address'		=> $faker->address
+	];
+});
+
+/*Factory to create new events*/
+
+$factory->define(App\Event::class, function ($faker) {
+
+	return [
+		'user_id'		=> App\User::all()->random()->id,
+		'title' 		=> $faker->sentence,
+		'body'			=> $faker->paragraph,
+		'country' 		=> $faker->country,
+		'city'			=> $faker->city,
+		'address'		=> $faker->address
+	];
+});
+
+/* Factory to create new batches */
+
+$factory->defineAs(App\Batch::class, 'course', function ($faker) {
+
+	// Random datetime for starting date within a week
+	$startingDate = $faker->dateTimeBetween('this week', '+6 days');
+	// Random datetime for ending date of the current week *after* `$startingDate`
+	$endingDate   = $faker->dateTimeBetween($startingDate, '+3 months');
+
+	// Random datetime for starting time
+	$startingTime = $faker->dateTimeBetween('this week', '+1 hours');
+	// Random datetime of ending time from the starting
+	$endingTime   = $faker->dateTimeBetween($startingTime, '+3 hours');
+
+	return [
+		'user_id'		=> App\User::all()->random()->id,
+		'parent_id'		=> App\Course::all()->random()->id,
+		'parent_type'	=> 'App\Course',
+		'start_date'	=> $startingDate,
+		'end_date'		=> $endingDate,
+		'start_time'	=> $startingTime,
+		'end_time'		=> $endingTime,
+		'start_day'		=> $faker->dayOfWeek,
+		'end_day'		=> $faker->dayOfWeek,
+		'price'			=> $faker->numberBetween($min = 1, $max = 10) * 100 
+	];
+});
+
+
+$factory->defineAs(App\Batch::class, 'event', function ($faker) {
+
+	// Random datetime for starting date within a week
+	$startingDate = $faker->dateTimeBetween('this week', '+6 days');
+	// Random datetime for ending date of the current week *after* `$startingDate`
+	$endingDate   = $faker->dateTimeBetween($startingDate, '+3 months');
+
+	// Random datetime for starting time
+	$startingTime = $faker->dateTimeBetween('this week', '+1 hours');
+	// Random datetime of ending time from the starting
+	$endingTime   = $faker->dateTimeBetween($startingTime, '+3 hours');
+
+	return [
+		'user_id'		=> App\User::all()->random()->id,
+		'parent_id'		=> App\Event::all()->random()->id,
+		'parent_type'	=> 'App\Event',
+		'start_date'	=> $startingDate,
+		'end_date'		=> $endingDate,
+		'start_time'	=> $startingTime,
+		'end_time'		=> $endingTime,
+		'start_day'		=> $faker->dayOfWeek,
+		'end_day'		=> $faker->dayOfWeek,
+		'price'			=> $faker->numberBetween($min = 1, $max = 10) * 100 
+	];
+});
