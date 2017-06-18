@@ -32,7 +32,7 @@ class EventController extends Controller
         // TODO: Commenting
 
         $events = Event::all();
-        return view('event.index', ['events' => $events]);
+        return view('event.index', compact('events'));
     }
 
     /**

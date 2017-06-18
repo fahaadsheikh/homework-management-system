@@ -23,7 +23,7 @@ Route::resource('courses', 'CourseController');
 
 Route::resource('events', 'EventController');
 
-Route::resource('people', 'PeopleController');
+Route::resource('participants', 'ParticipantController');
 
 Route::resource('batches', 'BatchController');
 

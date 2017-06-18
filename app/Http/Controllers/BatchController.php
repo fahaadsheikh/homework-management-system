@@ -18,8 +18,8 @@ class BatchController extends Controller
     {
         //
 
-        $batches = DB::table('batches')->get();
-        return view('batch.index', ['batches' => $batches]);
+        $batches = Batch::all();
+        return view('batch.index', compact('batches');
     }
 
     /**

@@ -20,9 +20,7 @@
                 <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">
                     @foreach ($course->batches as $batch)
-                        <article>
-                                <h3>{{ $batch->id }} - {{ $batch->start_date }}</h3>                               
-                        </article>
+                        @include('partials.batch-loop')
                     @endforeach
                 </div>
             </div>

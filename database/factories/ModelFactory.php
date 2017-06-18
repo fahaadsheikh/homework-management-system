@@ -25,7 +25,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 /*Factory to create new people*/
 
-$factory->define(App\People::class, function ($faker) {
+$factory->define(App\Participant::class, function ($faker) {
 
 	return [
 		'user_id'			=> App\User::all()->random()->id,

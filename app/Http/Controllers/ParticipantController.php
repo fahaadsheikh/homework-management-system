@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\People;
+use App\Participant;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
-class PeopleController extends Controller
+class ParticipantController extends Controller
 {
 
     /**
@@ -21,7 +19,6 @@ class PeopleController extends Controller
         $this->middleware('auth');
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -30,9 +27,8 @@ class PeopleController extends Controller
     public function index()
     {
         //
-
-        $people = DB::table('people')->get();
-        return view('people.index', ['people' => $people]);
+        $participants = Participant::all();
+        return view('participants.index', compact('participants'));
     }
 
     /**
@@ -59,10 +55,10 @@ class PeopleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\People  $people
+     * @param  \App\Participant  $participant
      * @return \Illuminate\Http\Response
      */
-    public function show(People $people)
+    public function show(Participant $participant)
     {
         //
     }
@@ -70,10 +66,10 @@ class PeopleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\People  $people
+     * @param  \App\Participant  $participant
      * @return \Illuminate\Http\Response
      */
-    public function edit(People $people)
+    public function edit(Participant $participant)
     {
         //
     }
@@ -82,10 +78,10 @@ class PeopleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\People  $people
+     * @param  \App\Participant  $participant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, People $people)
+    public function update(Request $request, Participant $participant)
     {
         //
     }
@@ -93,10 +89,10 @@ class PeopleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\People  $people
+     * @param  \App\Participant  $participant
      * @return \Illuminate\Http\Response
      */
-    public function destroy(People $people)
+    public function destroy(Participant $participant)
     {
         //
     }

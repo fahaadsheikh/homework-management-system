@@ -7,9 +7,9 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">
-                    @foreach ($people as $person)
+                    @foreach ($participants as $participant)
                         <article>
-                            <h3>{{ $person->first_name }}</h3>
+                            <h3>{{ $participant->first_name }}</h3>
                         </article>
                     @endforeach
                 </div>
