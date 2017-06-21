@@ -35,4 +35,9 @@ class ParticipantTest extends TestCase
     public function test_a_participant_has_an_creator() {
         $this->assertInstanceOf('App\User', $this->participant->creator);
     }
+
+    // A Participant has an creator
+    public function test_a_participant_can_have_batches() {
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->participant->batches);
+    }
 }

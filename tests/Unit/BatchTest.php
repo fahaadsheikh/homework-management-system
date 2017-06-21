@@ -34,4 +34,9 @@ class BatchTest extends TestCase
     public function test_a_batch_has_an_creator() {
     	$this->assertInstanceOf('App\User', $this->batchforcourse->creator);
     }
+
+    // A Batch can have participants
+    public function test_a_batch_has_can_have_participants() {
+        $this->assertInstanceOf('App\User', $this->batchforcourse->creator);
+    }
 }

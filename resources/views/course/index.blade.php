@@ -4,19 +4,25 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Courses</div>
-                <div class="panel-body">
-                    @foreach ($courses as $course)
+            <h2>All Courses</h2>
+            <hr>
+        </div>
+        @foreach ($courses as $course)
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="{{ $course->path() }}">
+                            <h4>{{ $course->title }}</h4>
+                        </a>
+                    </div>
+                    <div class="panel-body">
                         <article>
-                            <a href="{{ $course->path() }}">
-                                <h3>{{ $course->title }}</h3>
-                            </a>
+                                <p>{{ $course->body }}</p>
                         </article>
-                    @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection

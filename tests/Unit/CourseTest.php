@@ -35,4 +35,9 @@ class CourseTest extends TestCase
         $this->assertInstanceOf('App\User', $this->course->creator);
     }
 
+    // A Course can have batches
+    public function test_a_course_has_batches() {
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->course->batches);
+    }
+
 }

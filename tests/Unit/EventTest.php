@@ -34,4 +34,9 @@ class EventTest extends TestCase
     public function test_an_event_has_an_creator() {
     	$this->assertInstanceOf('App\User', $this->event->creator);
     }
+
+    // An Event can have batches
+    public function test_a_course_has_batches() {
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->event->batches);
+    }
 }
