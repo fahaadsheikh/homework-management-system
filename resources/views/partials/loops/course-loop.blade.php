@@ -10,5 +10,6 @@
                     <p>{{ $course->body }}</p>
             </article>
         </div>
+        @include('partials.panel-footer', ['parent' => $course])
     </div>
 </div>

@@ -11,6 +11,7 @@
                         <p>{{ $event->body }}</p>
                     </article>
                 </div>
+                @include('partials.panel-footer', ['parent' => $event])
             </div>
         </div>
     </div>

@@ -11,7 +11,9 @@
                         <p>{{ $course->body }}</p>
                     </article>
                 </div>
-            </div>        </div>
+                @include('partials.panel-footer', ['parent' => $course])
+            </div>        
+        </div>
     </div>
     <div class="row">
         @foreach ($course->batches as $batch)

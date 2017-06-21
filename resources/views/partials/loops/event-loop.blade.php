@@ -8,7 +8,8 @@
         <div class="panel-body">
             <article>
                     <p>{{ $event->body }}</p>
-            </article>                    
+            </article>              
         </div>
+        @include('partials.panel-footer', ['parent' => $event])
     </div>
 </div>
