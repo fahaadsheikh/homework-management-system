@@ -8,7 +8,7 @@
                 <div class="panel-heading"><h3>{{ $event->title }}</h3></div>
                 <div class="panel-body">
                     <article>
-                        <h3>{{ $event->body }}</h3>
+                        <p>{{ $event->body }}</p>
                     </article>
                 </div>
             </div>
@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         @foreach ($event->batches as $batch)
-            @include('partials.batch-loop')
+            @include('partials.loops.batch-loop')
         @endforeach       
     </div>
 </div>

@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         @foreach ($course->batches as $batch)
-            @include('partials.batch-loop')
+            @include('partials.loops.batch-loop')
         @endforeach       
     </div>
 </div>

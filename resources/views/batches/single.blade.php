@@ -20,7 +20,7 @@
                 <div class="panel-heading">Dashboard</div>
                 <div class="panel-body">
                     @foreach ($batch->participant as $participant)
-                        @include('partials.batch-loop')
+                        @include('partials.loops.batch-loop')
                     @endforeach
                 </div>
             </div>
