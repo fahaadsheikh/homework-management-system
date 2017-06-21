@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
 	
-    use batchable;
+    use batchable, creator;
 
     /*
 	 * Return path of a single course

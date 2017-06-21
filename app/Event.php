@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    use batchable;
+    use batchable, creator;
 
     /*
 	 * Return path of a single event
      */
     public function path() 
     {
-        return 'courses/' . $this->id;
+        return 'events/' . $this->id;
     }
 }

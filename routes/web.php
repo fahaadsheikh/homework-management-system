@@ -27,3 +27,4 @@ Route::resource('participants', 'ParticipantController');
 
 Route::resource('batches', 'BatchController');
 
+
