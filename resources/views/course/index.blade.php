@@ -8,7 +8,7 @@
             <hr>
         </div>
         @foreach ($courses as $course)
-            @include('partials.loops.course-loop')
+            @include('partials.panel.course')
         @endforeach
     </div>
 </div>

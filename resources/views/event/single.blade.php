@@ -3,24 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h3>{{ $event->title }}</h3></div>
-                <div class="panel-body">
-                    <article>
-                        <p>{{ $event->body }}</p>
-                    </article>
-                </div>
-                @include('partials.panel.footer', [
-                    'creator_name' => $event->creator->name,
-                    'update_at' => $event->updated_at->diffForHumans()
-                    ])
-            </div>
-        </div>
+        @include('partials.panel.event')
     </div>
     <div class="row">
         @foreach ($event->batches as $batch)
-            @include('partials.loops.batch-loop')
+            @include('partials.panel.batch')
         @endforeach       
     </div>
 </div>

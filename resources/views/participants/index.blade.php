@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         @foreach ($participants as $participant)
-            @include('partials.loops.participant-loop')
+            @include('partials.panel.participant')
         @endforeach
     </div>
 </div>

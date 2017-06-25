@@ -8,7 +8,7 @@
             <hr>
         </div>
         @foreach ($events as $event)
-            @include('partials.loops.event-loop')
+            @include('partials.panel.event')
         @endforeach
     </div>
 </div>
