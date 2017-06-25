@@ -16,7 +16,10 @@
                             <p>End Day: {{ $batch->end_day }}</p>
                     </article>
                 </div>
-                @include('partials.panel-footer', ['parent' => $batch])
+                @include('partials.panel.footer', [
+                    'creator_name' => $batch->creator->name,
+                    'update_at' => $batch->updated_at->diffForHumans()
+                    ])
             </div>
         </div>
     </div>

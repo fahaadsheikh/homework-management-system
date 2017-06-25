@@ -18,7 +18,7 @@ class BatchController extends Controller
     {
         //
 
-        $batches = Batch::all();
+        $batches = Batch::with('creator')->get();
         return view('batch.index', compact('batches');
     }
 

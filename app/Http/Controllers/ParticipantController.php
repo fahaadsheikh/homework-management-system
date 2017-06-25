@@ -27,7 +27,7 @@ class ParticipantController extends Controller
     public function index()
     {
         //
-        $participants = Participant::all();
+        $participants = Participant::with('creator')->get();
         return view('participants.index', compact('participants'));
     }
 

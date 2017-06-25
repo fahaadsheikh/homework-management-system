@@ -10,6 +10,9 @@
                     <p>{{ $course->body }}</p>
             </article>
         </div>
-        @include('partials.panel-footer', ['parent' => $course])
+        @include('partials.panel.footer', [
+            'creator_name' => $course->creator->name,
+            'update_at' => $course->updated_at->diffForHumans()
+            ])
     </div>
 </div>
