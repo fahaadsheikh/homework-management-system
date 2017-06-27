@@ -40,7 +40,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -51,7 +51,7 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -62,6 +62,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        $course->load('creator', 'batches','batches.creator');
         return view('course.single', compact('course'));
     }
 

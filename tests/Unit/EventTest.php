@@ -19,8 +19,8 @@ class EventTest extends TestCase
         $this->user     = factory('App\User')->create();
         $this->course   = factory('App\Course')->create();
         $this->event   = factory('App\Event')->create();
-        $this->batchforcourse    = factory('App\Batch', 'course')->create(['user_id' => $this->user->id, 'parent_id' => $this->course->id]);
-        $this->batchforevent    = factory('App\Batch', 'event')->create(['user_id' => $this->user->id, 'parent_id' => $this->event->id]);
+        $this->batchforcourse    = factory('App\Batch', 'course')->make(['user_id' => $this->user->id, 'parent_id' => $this->course->id]);
+        $this->batchforevent    = factory('App\Batch', 'event')->make(['user_id' => $this->user->id, 'parent_id' => $this->event->id]);
 
     }
 
@@ -36,7 +36,38 @@ class EventTest extends TestCase
     }
 
     // An Event can have batches
-    public function test_a_course_has_batches() {
+    public function test_an_event_has_batches() {
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->event->batches);
+    }
+
+    /**
+     * A event can add a batch
+     *
+     * @return void
+     * @author 
+     **/
+    function test_a_event_can_add_a_batch()
+    {
+        // Make a sample batch for the current event in memory.
+        $batch = [
+                'user_id' => $this->user->id,
+                'parent_id' => $this->event->id,
+                'parent_type' => 'App\Event',
+                'start_date' => date('Y-m-d'),
+                'end_date' => date('Y-m-d'),
+                'start_time' => date('Y-m-d'),
+                'end_time' => date('Y-m-d'),
+                'start_day' => date('Y-m-d'),
+                'end_day' => date('Y-m-d'),
+                'price' => 8000
+            ];
+
+        // Execute the storeCoruse function on the provided event so the batch is stored
+        $this->event->addBatch($batch);
+
+
+        // Check to see if the added batch is properly stored and shown in the event
+        $this->assertCount(1, $this->event->batches);
+
     }
 }

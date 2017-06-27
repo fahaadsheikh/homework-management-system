@@ -6,20 +6,20 @@ use App\Batch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Course;
+use App\Event;
 
-class BatchController extends Controller
+Class BatchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Batch $batch)
     {
-        //
-
-        $batches = Batch::with('creator')->get();
-        return view('batch.index', compact('batches');
+        $batches = $batch->load('creator', 'participant','participant.creator');
+        return view('batches.index', compact('batches'));
     }
 
     /**
@@ -38,9 +38,22 @@ class BatchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course, Event $event)
     {
-        //
+        $course->addBatch([
+            'user_id'       => request('user_id'),
+            'parent_id'     => request('parent_id'),
+            'parent_type'   => request('parent_type'),
+            'start_date'    => request('start_date'),
+            'end_date'      => request('end_date'),
+            'start_time'    => request('start_time'),
+            'end_time'      => request('end_time'),
+            'start_day'     => request('start_day'),
+            'end_day'       => request('end_day'),
+            'price'         => request('price'),
+            ]);
+
+        return back();
     }
 
     /**
@@ -49,8 +62,9 @@ class BatchController extends Controller
      * @param  \App\Batch  $batch
      * @return \Illuminate\Http\Response
      */
-    public function show(Batch $batch)
+    public function show(Course $course, Batch $batch)
     {
+        $batch->load('creator', 'participant','participant.creator');
         return view('batches.single', compact('batch'));
     }
 

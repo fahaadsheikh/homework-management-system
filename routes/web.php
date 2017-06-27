@@ -25,6 +25,6 @@ Route::resource('events', 'EventController');
 
 Route::resource('participants', 'ParticipantController');
 
-Route::resource('batches', 'BatchController');
+Route::resource('courses.batch', 'BatchController');
 
-
+Route::resource('events.batch', 'BatchController');

@@ -9,8 +9,8 @@ class Batch extends Model
 {
 
     use creator;
-    // fillable fields
-    protected $fillable = ['user_id'];
+
+    protected $guarded = [];
 
 
     /*
@@ -30,5 +30,5 @@ class Batch extends Model
     public function participant() {
     	return $this->belongsToMany(Participant::class)->withTimestamps();
     }
-    
+   
 }

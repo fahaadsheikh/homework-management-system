@@ -64,7 +64,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $event->load('creator', 'batches','batches.creator');
         return view('event.single', compact('event'));
     }
 
