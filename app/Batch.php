@@ -7,8 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Batch extends Model
 {
-    // fillable fields
-    protected $fillable = ['user_id'];
+
+    use creator;
+
+    protected $guarded = [];
+
+
+    /*
+     * Return path of a single event
+     */
+    public function path() 
+    {
+        return 'batch/' . $this->id;
+    }
 
     /**
      *
@@ -19,5 +30,5 @@ class Batch extends Model
     public function participant() {
     	return $this->belongsToMany(Participant::class)->withTimestamps();
     }
-    
+   
 }

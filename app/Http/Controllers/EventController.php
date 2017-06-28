@@ -31,7 +31,7 @@ class EventController extends Controller
     {
         // TODO: Commenting
 
-        $events = Event::all();
+        $events = Event::with('creator')->get();
         return view('event.index', compact('events'));
     }
 
@@ -51,9 +51,17 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Event $event, Request $request)
     {
-        //
+        Event::create([
+            'user_id'       => auth()->id(),
+            'title'         => request('title'),
+            'body'          => request('body'),
+            'country'       => request('country'),
+            'city'          => request('city'),
+            'address'       => request('address')
+            ]);
+        return back();
     }
 
     /**
@@ -64,7 +72,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $event->load('creator', 'batches','batches.creator');
         return view('event.single', compact('event'));
     }
 

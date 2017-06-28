@@ -40,15 +40,15 @@ trait batchable
             ->where('user_id', $user->id)
             ->exists();
     }
+
     /**
-     * Have the authenticated user favorite the model.
+     * A Batch can be created by its parents
      *
      * @return void
-     */
-    public function batch()
+     * @author 
+     **/
+    function addBatch($batch)
     {
-        $this->batches()->save(
-            new Batch(['user_id' => auth()->id()])
-        );
+        $this->batches()->create($batch);
     }
 }

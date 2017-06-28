@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-	
-    use batchable;
+	protected $guarded = [];
+
+    use batchable, creator;
 
     /*
 	 * Return path of a single course
@@ -17,4 +18,17 @@ class Course extends Model
     {
     	return 'courses/' . $this->id;
     }
+
+    /**
+     * Add a course
+     *
+     * @return void
+     * @author 
+     **/
+
+    public function addCourse($course)
+    {
+        $this->create($course);
+    }
+
 }

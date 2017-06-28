@@ -29,7 +29,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::with('creator')->get();
         return view('course.index', compact('courses'));
     }
 
@@ -40,7 +40,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -51,7 +51,16 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Course::create([
+            'user_id'       => auth()->id(),
+            'title'         => request('title'),
+            'body'          => request('body'),
+            'country'       => request('country'),
+            'city'          => request('city'),
+            'address'       => request('address')
+            ]);
+        return back();
     }
 
     /**
@@ -62,6 +71,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        $course->load('creator', 'batches','batches.creator');
         return view('course.single', compact('course'));
     }
 

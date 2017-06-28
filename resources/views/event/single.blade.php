@@ -3,28 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-                <div class="panel-body">
-                    <article>
-                        <h3>{{ $event->title }}</h3>
-                    </article>
-                </div>
-            </div>
-        </div>
+        @include('partials.panel.event')
     </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-                <div class="panel-body">
-                    @foreach ($event->batches as $batch)
-                        @include('partials.batch-loop')
-                    @endforeach
-                </div>
-            </div>
-        </div> 
+        @foreach ($event->batches as $batch)
+            @include('partials.panel.batch')
+        @endforeach       
     </div>
+    @include('partials.forms.addBatch')
 </div>
 @endsection

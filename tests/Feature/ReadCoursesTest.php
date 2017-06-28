@@ -8,10 +8,12 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use App\User;
 use App\Course;
 
-class CoursesTest extends TestCase
+class ReadCoursesTest extends TestCase
 {
 
     use DatabaseMigrations;
+
+    protected $course;
 
     public function setup()
     {
@@ -27,8 +29,9 @@ class CoursesTest extends TestCase
         $this->be($user);
     }
 
+
     /**
-     * A basic test example.
+     * TODO Comment
      *
      * @return void
      */
@@ -41,6 +44,11 @@ class CoursesTest extends TestCase
          ->assertSee($this->course->title);
     }
 
+    /**
+     * TODO Comment
+     *
+     * @return void
+     */    
     public function test_a_user_can_view_single_course() 
     {
         // Mock user Authentification
@@ -50,7 +58,12 @@ class CoursesTest extends TestCase
          ->assertSee($this->course->title);
     }
 
-    public function test_a_user_can_view_batches_within_the_associated_course() 
+    /**
+     * TODO Comment
+     *
+     * @return void
+     */
+/*    public function test_a_user_can_view_batches_within_the_associated_course() 
     {
         // Mock user Authentification
         $this->mockUser();
@@ -60,5 +73,6 @@ class CoursesTest extends TestCase
         // Check if the created course is visited the created batch is shown
         $this->get('/courses/' . $this->course->id)
          ->assertSee("$batch_id");
-    }
+    }*/
+
 }
