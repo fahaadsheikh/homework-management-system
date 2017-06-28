@@ -10,5 +10,6 @@
             @include('partials.panel.batch')
         @endforeach       
     </div>
+    @include('partials.forms.addBatch')
 </div>
 @endsection
