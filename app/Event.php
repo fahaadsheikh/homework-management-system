@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+	protected $guarded = [];
+	
     use batchable, creator;
 
     /*
@@ -14,5 +16,17 @@ class Event extends Model
     public function path() 
     {
         return 'events/' . $this->id;
+    }
+
+    /**
+     * Add a course
+     *
+     * @return void
+     * @author 
+     **/
+
+    public function addEvent($course)
+    {
+        $this->create($course);
     }
 }

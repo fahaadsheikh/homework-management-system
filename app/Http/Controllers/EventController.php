@@ -51,9 +51,17 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Event $event, Request $request)
     {
-        //
+        $event->addEvent([
+            'user_id'       => request('user_id'),
+            'title'         => request('title'),
+            'body'          => request('body'),
+            'country'       => request('country'),
+            'city'          => request('city'),
+            'address'       => request('address')
+            ]);
+        return back();
     }
 
     /**

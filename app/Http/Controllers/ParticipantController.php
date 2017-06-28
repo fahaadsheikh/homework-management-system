@@ -47,9 +47,19 @@ class ParticipantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Participant $participant)
     {
-        //
+        $participant->addParticipant([
+            'user_id'       => request('user_id'),
+            'first_name'    => request('first_name'),
+            'last_name'     => request('last_name'),
+            'email'         => request('email'),
+            'contact_no'    => request('contact_no'),
+            'country'       => request('country'),
+            'city'          => request('city'),
+            'address'       => request('address')
+            ]);
+        return back();
     }
 
     /**

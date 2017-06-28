@@ -19,4 +19,16 @@ class Course extends Model
     	return 'courses/' . $this->id;
     }
 
+    /**
+     * Add a course
+     *
+     * @return void
+     * @author 
+     **/
+
+    public function addCourse($course)
+    {
+        $this->create($course);
+    }
+
 }

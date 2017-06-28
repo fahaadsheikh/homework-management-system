@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Participant extends Model
 {
+    protected $guarded = [];
     
     use batchable, creator;
 
@@ -18,6 +19,18 @@ class Participant extends Model
 
     public function batch() {
     	return $this->belongsToMany(Batch::class)->withTimestamps();
+    }
+
+    /**
+     * Add a course
+     *
+     * @return void
+     * @author 
+     **/
+
+    public function addParticipant($course)
+    {
+        $this->create($course);
     }
     
 }
