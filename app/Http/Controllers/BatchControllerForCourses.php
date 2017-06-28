@@ -9,8 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Course;
 use App\Event;
 
-Class BatchController extends Controller
+class BatchControllerForCourses extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +39,7 @@ Class BatchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Course $course, Event $event)
+    public function store(Request $request, Course $course)
     {
         $course->addBatch([
             'user_id'       => auth()->id(),

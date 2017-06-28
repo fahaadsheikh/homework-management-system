@@ -49,8 +49,8 @@ class ParticipantController extends Controller
      */
     public function store(Request $request, Participant $participant)
     {
-        $participant->addParticipant([
-            'user_id'       => request('user_id'),
+        Participant::create([
+            'user_id'       => auth()->id(),
             'first_name'    => request('first_name'),
             'last_name'     => request('last_name'),
             'email'         => request('email'),

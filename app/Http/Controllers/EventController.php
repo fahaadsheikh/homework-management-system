@@ -53,8 +53,8 @@ class EventController extends Controller
      */
     public function store(Event $event, Request $request)
     {
-        $event->addEvent([
-            'user_id'       => request('user_id'),
+        Event::create([
+            'user_id'       => auth()->id(),
             'title'         => request('title'),
             'body'          => request('body'),
             'country'       => request('country'),

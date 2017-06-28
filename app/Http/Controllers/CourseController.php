@@ -49,11 +49,11 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Course $course, Request $request)
+    public function store(Request $request)
     {
 
-        $course->addCourse([
-            'user_id'       => request('user_id'),
+        Course::create([
+            'user_id'       => auth()->id(),
             'title'         => request('title'),
             'body'          => request('body'),
             'country'       => request('country'),
