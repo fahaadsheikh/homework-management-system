@@ -49,6 +49,17 @@ class ParticipantController extends Controller
      */
     public function store(Request $request, Participant $participant)
     {
+        $this->validate($request, [
+                'first_name' => 'required|max:255',
+                'last_name'  => 'required|max:255',
+                'email'  => 'required|string|max:255',
+                'contact_no'  => 'required|max:255',
+                'country'  => 'required|max:255',
+                'city'  => 'required|max:255',
+                'address'  => 'required',
+
+            ]);
+
         Participant::create([
             'user_id'       => auth()->id(),
             'first_name'    => request('first_name'),

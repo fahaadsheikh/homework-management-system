@@ -10,7 +10,7 @@ use App\User;
 use App\Course;
 use App\Event;
 
-class CreateTest extends TestCase
+class CreateBatchesTest extends TestCase
 {
 	use DatabaseMigrations;
 
@@ -27,63 +27,6 @@ class CreateTest extends TestCase
 	    $this->be($user);
 	}
 
-
-	/**
-	 * A user may create courses
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	function test_an_authenticated_user_may_create_courses()
-	{
-		$this->mockUser();
-
-		$course   = factory('App\Course')->make();
-
-		$this->post('/courses', $course->toArray());
-
-		$this->get('/courses'.$course->id)
-		    ->assertSee($course->body);
-		
-	}
-
-	/**
-	 * A user may create events
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	function test_an_authenticated_user_may_create_events()
-	{
-		$this->mockUser();
-
-		$event   = factory('App\Event')->make();
-
-		$this->post('/events', $event->toArray());
-
-		$this->get('/events'.$event->id)
-		    ->assertSee($event->body);
-		
-	}
-
-	/**
-	 * A user may create participants
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	function test_an_authenticated_user_may_create_partcipants()
-	{
-		$this->mockUser();
-
-		$participants   = factory('App\Participant')->make();
-
-		$this->post('/participants', $participants->toArray());
-
-		$this->get('/participants'.$participants->id)
-		    ->assertSee($participants->first_name);
-		
-	}
 
 
 	/**
@@ -103,7 +46,7 @@ class CreateTest extends TestCase
 		$this->post('/courses/'.$this->course->id.'/batch', $this->batch->toArray());
 		
 		// Check to see if the added batch is properly stored and shown in the course
-        $this->assertCount(1, $this->course->batches);
+	    $this->assertCount(1, $this->course->batches);
 
 		$this->get('/courses/'.$this->course->id)
 		 ->assertSee($this->batch->start_day);		

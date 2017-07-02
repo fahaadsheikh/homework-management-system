@@ -42,7 +42,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('event.create');
     }
 
     /**
@@ -53,6 +53,16 @@ class EventController extends Controller
      */
     public function store(Event $event, Request $request)
     {
+
+        $this->validate($request, [
+                'title' => 'required|max:255',
+                'body'  => 'required',
+                'country'  => 'required|max:255',
+                'city'  => 'required|max:255',
+                'address'  => 'required',
+
+            ]);
+        
         Event::create([
             'user_id'       => auth()->id(),
             'title'         => request('title'),
@@ -61,7 +71,7 @@ class EventController extends Controller
             'city'          => request('city'),
             'address'       => request('address')
             ]);
-        return back();
+        return redirect( url('events') );
     }
 
     /**
@@ -73,7 +83,7 @@ class EventController extends Controller
     public function show(Event $event)
     {
         $event->load('creator', 'batches','batches.creator');
-        return view('event.single', compact('event'));
+        return view('event.show', compact('event'));
     }
 
     /**

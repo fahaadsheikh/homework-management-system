@@ -40,7 +40,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        
+        return view('course.create');
     }
 
     /**
@@ -52,6 +52,15 @@ class CourseController extends Controller
     public function store(Request $request)
     {
 
+        $this->validate($request, [
+                'title' => 'required|max:255',
+                'body'  => 'required',
+                'country'  => 'required|max:255',
+                'city'  => 'required|max:255',
+                'address'  => 'required',
+
+            ]);
+
         Course::create([
             'user_id'       => auth()->id(),
             'title'         => request('title'),
@@ -60,7 +69,7 @@ class CourseController extends Controller
             'city'          => request('city'),
             'address'       => request('address')
             ]);
-        return back();
+        return redirect( url('courses') );
     }
 
     /**
@@ -72,7 +81,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         $course->load('creator', 'batches','batches.creator');
-        return view('course.single', compact('course'));
+        return view('course.show', compact('course'));
     }
 
     /**

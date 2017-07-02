@@ -19,8 +19,8 @@ class BatchControllerForEvents extends Controller
      */
     public function index(Batch $batch)
     {
-        $batches = $batch->load('creator', 'participant','participant.creator');
-        return view('batches.index', compact('batches'));
+        $batch = $batch->load('creator', 'participant','participant.creator');
+        return view('batch.index', compact('batch'));
     }
 
     /**
@@ -30,7 +30,7 @@ class BatchControllerForEvents extends Controller
      */
     public function create()
     {
-        //
+        return view('batch.create');
     }
 
     /**
@@ -66,7 +66,7 @@ class BatchControllerForEvents extends Controller
     public function show(Course $course, Batch $batch)
     {
         $batch->load('creator', 'participant','participant.creator');
-        return view('batches.single', compact('batch'));
+        return view('batch.single', compact('batch'));
     }
 
     /**

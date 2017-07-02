@@ -4,37 +4,34 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h2>All Events</h2>
+            <div class="row">
+                <div class="col-md-6"><h2>All Events</h2></div>
+                <div class="col-md-6">
+                    <h2><span class="pull-right"><a href="events/create" class="btn btn-primary">Create A New Event</a></h2></span>
+                </div>
+            </div>
             <hr>
         </div>
         @foreach ($events as $event)
-            @include('partials.panel.event')
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a href="{{ $event->path() }}">
+                            <h4>{{ $event->title }}</h4>
+                        </a>
+                    </div>
+                    <div class="panel-body">
+                        <article>
+                                <p>{{ $event->body }}</p>
+                        </article>              
+                    </div>
+                    @include('partials.panel.footer', [
+                        'creator_name' => $event->creator->name,
+                        'update_at' => $event->updated_at->diffForHumans()
+                        ])
+                </div>
+            </div>
         @endforeach
-    </div>
-    <div class="row">
-    	<div class="col-md-8 col-md-offset-2">
-    		<h5><strong>Add an Event</strong></h5>
-    		<hr>
-	    	<form method="POST" action="events">
-	    		{{ csrf_field() }}
-	    		<div class="form-group">
-    	    		<input type="text" class="form-control" name="title" id="title" placeholder="Event Title">
-    	    	</div>
-    	    	<div class="form-group">	
-    	    		<input type="text" class="form-control" name="country" id="country" placeholder="Country">
-    	    	</div>
-    	    	<div class="form-group">	
-    	    		<input type="text" class="form-control" name="city" id="city" placeholder="City">
-    	    	</div>
-    	    	<div class="form-group">	
-    	    		<input type="text" class="form-control" name="address" id="address" placeholder="Address">
-    	    	</div>
-    	    	<div class="form-group">	
-    	    		<textarea class="form-control" name="body" id="body" rows="5" placeholder="Event Description"></textarea>
-    	    	</div>
-    	    	<input type="submit" class="btn btn-primary">
-	    	</form>
-		</div>    
     </div>
 </div>
 @endsection

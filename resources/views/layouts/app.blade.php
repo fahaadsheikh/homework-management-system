@@ -35,16 +35,33 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li class="dropdown">
+                            <a href="{{ route('courses.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Courses <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('courses.index') }}">All Courses</a></li>
+                                <li><a href="{{ route('courses.create') }}">Create a Course</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{{ route('events.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('events.index') }}">All Events</a></li>
+                                <li><a href="{{ route('events.create') }}">Create a Event</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{{ route('participants.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Participants <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('participants.index') }}">All Participants</a></li>
+                                <li><a href="{{ route('participants.create') }}">Add a Participant</a></li>
+                            </ul>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ route('courses.index') }}">Courses</a></li>
-                        <li><a href="{{ route('events.index') }}">Events</a></li>
-                        <li><a href="{{ route('participants.index') }}">Participants</a></li>
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
