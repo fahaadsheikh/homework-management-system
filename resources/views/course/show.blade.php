@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            @include('partials.panel.batch-form')
+            @include('batch.batch-form')
 
             @foreach ($course->batches as $batch)
                 <div class="panel panel-default">

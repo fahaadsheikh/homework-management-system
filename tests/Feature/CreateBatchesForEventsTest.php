@@ -28,7 +28,7 @@ class CreateBatchesForEventsTest extends TestCase
 	}
 
 	/**
-	 * A user may create batches for courses
+	 * A user may create batches for events
 	 *
 	 * @return void
 	 * @author 
@@ -49,6 +49,32 @@ class CreateBatchesForEventsTest extends TestCase
 		$this->get('/events/'.$this->event->id)
 		 ->assertSee($this->batch->start_day);		
 	}
+
+	/**
+	 * A user may create batches for events
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	function test_an_authenticated_user_may_add_participant_to_batches_for_events()
+	{
+		$this->mockUser();
+
+		$this->event   = factory('App\Event')->create();
+
+		$this->batch   = factory('App\Batch', 'event')->create(['user_id' => $this->user->id, 'parent_id' => $this->event->id]);
+
+		$this->participant = factory('App\Participant')->create();
+
+		$this->batch->participant()->attach($this->participant->id);
+
+		// Check to see if the added batch is properly stored and shown in the event
+	    $this->assertCount(1, $this->batch->participant);
+
+		$this->get('/events/'.$this->event->id.'/batch/'.$this->batch->id)
+		 ->assertSee($this->participant->first_name);		
+	}
+
 
 
 	/**

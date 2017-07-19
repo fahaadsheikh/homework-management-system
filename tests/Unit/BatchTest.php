@@ -21,7 +21,7 @@ class BatchTest extends TestCase
         $this->event   = factory('App\Event')->create();
         $this->batchforcourse    = factory('App\Batch', 'course')->create(['user_id' => $this->user->id, 'parent_id' => $this->course->id]);
         $this->batchforevent    = factory('App\Batch', 'event')->create(['user_id' => $this->user->id, 'parent_id' => $this->event->id]);
-
+        $this->participant    = factory('App\Participant')->create(['user_id' => $this->user->id]);
     }
 
     public function mockUser()
@@ -37,6 +37,6 @@ class BatchTest extends TestCase
 
     // A Batch can have participants
     public function test_a_batch_has_can_have_participants() {
-        $this->assertInstanceOf('App\User', $this->batchforcourse->creator);
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $this->participant->batches);
     }
 }

@@ -52,6 +52,31 @@ class CreateBatchesForCoursesTest extends TestCase
 		 ->assertSee($this->batch->start_day);		
 	}
 
+	/**
+	 * A user may create batches for courses
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	function test_an_authenticated_user_may_add_participant_to_batches_for_courses()
+	{
+		$this->mockUser();
+
+		$this->course   = factory('App\Course')->create();
+
+		$this->batch   = factory('App\Batch', 'course')->create(['user_id' => $this->user->id, 'parent_id' => $this->course->id]);
+
+		$this->participant = factory('App\Participant')->create();
+
+		$this->batch->participant()->attach($this->participant->id);
+
+		// Check to see if the added batch is properly stored and shown in the course
+	    $this->assertCount(1, $this->batch->participant);
+
+		$this->get('/courses/'.$this->course->id.'/batch/'.$this->batch->id)
+		 ->assertSee($this->participant->first_name);		
+	}
+
 
 	/**
 	 * a_batch_should_have_a_country

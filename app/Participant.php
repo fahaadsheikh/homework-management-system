@@ -31,15 +31,14 @@ class Participant extends Model
     }
 
     /**
-     * Add a course
+     * A Batch can be created by its parents
      *
      * @return void
      * @author 
      **/
-
-    public function addParticipant($course)
+    function attachParticipant($participant)
     {
-        $this->create($course);
+        $user->roles()->attach($roleId);
     }
     
 }
