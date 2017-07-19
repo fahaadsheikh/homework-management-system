@@ -28,7 +28,7 @@ class ParticipantController extends Controller
     {
         //
         $participants = Participant::with('creator')->get();
-        return view('participants.index', compact('participants'));
+        return view('participant.index', compact('participants'));
     }
 
     /**
@@ -38,7 +38,7 @@ class ParticipantController extends Controller
      */
     public function create()
     {
-        //
+        return view('participant.create');
     }
 
     /**
@@ -70,7 +70,7 @@ class ParticipantController extends Controller
             'city'          => request('city'),
             'address'       => request('address')
             ]);
-        return back();
+        return redirect()->route('participants.index');
     }
 
     /**

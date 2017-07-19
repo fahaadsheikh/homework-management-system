@@ -47,78 +47,91 @@ class CreateParticipantsTest extends TestCase
 	}
 
 	/**
-	 * a_course_should_have_a_title
+	 * a_participant_should_have_a_first_name
 	 *
 	 * @return void
 	 * @author 
 	 **/
-	public function test_a_course_should_have_a_title()
+	public function test_a_participant_should_have_a_first_name()
 	{
 
-		$this->publishCourse(['title' => null])
-			->assertSessionhasErrors('title');
+		$this->publishParticipant(['first_name' => null])
+			->assertSessionhasErrors('first_name');
 	}
 
 	/**
-	 * a_course_should_have_a_title
+	 * a_participant_should_have_a_last_name
 	 *
 	 * @return void
 	 * @author 
 	 **/
-	public function test_a_course_should_have_a_body()
+	public function test_a_participant_should_have_a_last_name()
 	{
 
-		$this->publishCourse(['body' => null])
-			->assertSessionhasErrors('body');
+		$this->publishParticipant(['last_name' => null])
+			->assertSessionhasErrors('last_name');
 	}
 
 	/**
-	 * a_course_should_have_a_title
+	 * a_participant_should_have_an_email
 	 *
 	 * @return void
 	 * @author 
 	 **/
-	public function test_a_course_should_have_a_country()
+	public function test_a_participant_should_have_an_email()
 	{
 
-		$this->publishCourse(['country' => null])
+		$this->publishParticipant(['email' => null])
+			->assertSessionhasErrors('email');
+	}
+
+	/**
+	 * a_participant_should_have_a_city
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function test_a_participant_should_have_a_country()
+	{
+
+		$this->publishParticipant(['country' => null])
 			->assertSessionhasErrors('country');
 	}
 
 	/**
-	 * a_course_should_have_a_title
+	 * a_participant_should_have_a_city
 	 *
 	 * @return void
 	 * @author 
 	 **/
-	public function test_a_course_should_have_a_city()
+	public function test_a_participant_should_have_a_city()
 	{
 
-		$this->publishCourse(['city' => null])
+		$this->publishParticipant(['city' => null])
 			->assertSessionhasErrors('city');
 	}
 
 	/**
-	 * a_course_should_have_a_title
+	 * a_participant_should_have_an_address
 	 *
 	 * @return void
 	 * @author 
 	 **/
-	public function test_a_course_should_have_a_address()
+	public function test_a_participant_should_have_an_address()
 	{
 
-		$this->publishCourse(['address' => null])
+		$this->publishParticipant(['address' => null])
 			->assertSessionhasErrors('address');
 	}
 
 
-	public function publishCourse($overrides = []) 
+	public function publishParticipant($overrides = []) 
 	{
 		$this->mockUser();
 
-		$course   = factory('App\Course')->make($overrides);
+		$participant   = factory('App\Participant')->make($overrides);
 
-		return $this->post('/courses', $course->toArray());
+		return $this->post('/participants', $participant->toArray());
 	}
 
 }

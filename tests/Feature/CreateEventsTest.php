@@ -71,47 +71,7 @@ class CreateEventsTest extends TestCase
 		$this->publishEvent(['body' => null])
 			->assertSessionhasErrors('body');
 	}
-
-	/**
-	 * a_event_should_have_a_title
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function test_a_event_should_have_a_country()
-	{
-
-		$this->publishEvent(['country' => null])
-			->assertSessionhasErrors('country');
-	}
-
-	/**
-	 * a_event_should_have_a_title
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function test_a_event_should_have_a_city()
-	{
-
-		$this->publishEvent(['city' => null])
-			->assertSessionhasErrors('city');
-	}
-
-	/**
-	 * a_event_should_have_a_title
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function test_a_event_should_have_a_address()
-	{
-
-		$this->publishEvent(['address' => null])
-			->assertSessionhasErrors('address');
-	}
-
-
+	
 	public function publishEvent($overrides = []) 
 	{
 		$this->mockUser();

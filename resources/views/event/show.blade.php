@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <a href="{{ $event->path() }}">
@@ -23,9 +23,21 @@
         </div>
     </div>
     <div class="row">
-        @foreach ($event->batches as $batch)
-            @include('partials.panel.batch')
-        @endforeach       
+        <div class="col-md-10 col-md-offset-1">
+            @include('partials.panel.batch-form')
+            
+            @foreach ($event->batches as $batch)
+                <div class="panel panel-default">
+                    <div class="panel-heading"><a href="{{url()->current().'/'.$batch->path()}}">Batch ID: {{ $batch->id }}</a></div>
+                    @include('partials.panel.footer', [
+                        'creator_name' => $batch->creator->name,
+                        'update_at' => $batch->updated_at->diffForHumans()
+                        ])
+                </div>
+            @endforeach
+        </div>   
     </div>
 </div>
 @endsection
+
+

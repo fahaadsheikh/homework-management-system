@@ -1,8 +1,11 @@
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-10 col-md-offset-1">
     <div class="panel panel-default">
         <div class="panel-heading"><a href="{{url()->current().'/'.$batch->path()}}">Batch ID: {{ $batch->id }}</a></div>
         <div class="panel-body">
             <article>
+                    <p>Country: {{ $batch->country }}</p>
+                    <p>City: {{ $batch->city }}</p>
+                    <p>Address: {{ $batch->address }}</p>
                     <p>Start Date: {{ $batch->start_date }}</p>
                     <p>End Date: {{ $batch->end_date }}</p>
                     <p>Start Time: {{ $batch->start_time }}</p>

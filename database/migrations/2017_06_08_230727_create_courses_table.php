@@ -18,9 +18,6 @@ class CreateCoursesTable extends Migration
             $table->integer('user_id');
             $table->string('title');
             $table->text('body');
-            $table->string("country");
-            $table->string("city");
-            $table->string("address");
             $table->timestamps();
         });
     }

@@ -18,6 +18,9 @@ class CreateBatchesTable extends Migration
             $table->integer('user_id');
             $table->integer('parent_id');
             $table->string('parent_type');
+            $table->string("country");
+            $table->string("city");
+            $table->string("address");
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->time('start_time');

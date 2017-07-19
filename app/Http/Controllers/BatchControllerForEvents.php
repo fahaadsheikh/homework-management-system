@@ -28,9 +28,9 @@ class BatchControllerForEvents extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Event $batchparent)
     {
-        return view('batch.create');
+        return back();
     }
 
     /**
@@ -41,10 +41,27 @@ class BatchControllerForEvents extends Controller
      */
     public function store(Request $request, Event $event)
     {
+
+        $this->validate($request, [
+            'country'       => 'required',
+            'city'          => 'required',
+            'address'       => 'required',
+            'start_date'    => 'required',
+            'end_date'      => 'required',
+            'start_time'    => 'required',
+            'end_time'      => 'required',
+            'start_day'     => 'required',
+            'end_day'       => 'required',
+            'price'         => 'required'
+            ]);
+
         $event->addBatch([
             'user_id'       => auth()->id(),
-            'parent_id'     => request('parent_id'),
-            'parent_type'   => request('parent_type'),
+            'parent_id'     => $event->id,
+            'parent_type'   => 'App\Event',
+            'country'       => request('country'),
+            'city'          => request('city'),
+            'address'       => request('address'),
             'start_date'    => request('start_date'),
             'end_date'      => request('end_date'),
             'start_time'    => request('start_time'),
@@ -63,7 +80,7 @@ class BatchControllerForEvents extends Controller
      * @param  \App\Batch  $batch
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course, Batch $batch)
+    public function show(Event $event, Batch $batch)
     {
         $batch->load('creator', 'participant','participant.creator');
         return view('batch.single', compact('batch'));

@@ -48,23 +48,11 @@ class CourseTest extends TestCase
      **/
     function test_a_course_can_add_a_batch()
     {
-        // Make a sample batch for the current course in memory.
-        $batch = [
-                'user_id' => $this->user->id,
-                'parent_id' => $this->course->id,
-                'parent_type' => 'App\Course',
-                'start_date' => date('Y-m-d'),
-                'end_date' => date('Y-m-d'),
-                'start_time' => date('Y-m-d'),
-                'end_time' => date('Y-m-d'),
-                'start_day' => date('Y-m-d'),
-                'end_day' => date('Y-m-d'),
-                'price' => 8000
-            ];
+
+        $batch = factory('App\Batch', 'course')->raw();
 
         // Execute the storeCoruse function on the provided course so the batch is stored
         $this->course->addBatch($batch);
-
 
         // Check to see if the added batch is properly stored and shown in the course
         $this->assertCount(1, $this->course->batches);

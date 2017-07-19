@@ -48,23 +48,10 @@ class EventTest extends TestCase
      **/
     function test_a_event_can_add_a_batch()
     {
-        // Make a sample batch for the current event in memory.
-        $batch = [
-                'user_id' => $this->user->id,
-                'parent_id' => $this->event->id,
-                'parent_type' => 'App\Event',
-                'start_date' => date('Y-m-d'),
-                'end_date' => date('Y-m-d'),
-                'start_time' => date('Y-m-d'),
-                'end_time' => date('Y-m-d'),
-                'start_day' => date('Y-m-d'),
-                'end_day' => date('Y-m-d'),
-                'price' => 8000
-            ];
+        $batch = factory('App\Batch', 'event')->raw();
 
         // Execute the storeCoruse function on the provided event so the batch is stored
         $this->event->addBatch($batch);
-
 
         // Check to see if the added batch is properly stored and shown in the event
         $this->assertCount(1, $this->event->batches);

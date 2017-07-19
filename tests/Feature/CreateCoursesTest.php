@@ -53,46 +53,6 @@ class CreateCoursesTest extends TestCase
 			->assertSessionhasErrors('body');
 	}
 
-	/**
-	 * a_course_should_have_a_title
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function test_a_course_should_have_a_country()
-	{
-
-		$this->publishCourse(['country' => null])
-			->assertSessionhasErrors('country');
-	}
-
-	/**
-	 * a_course_should_have_a_title
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function test_a_course_should_have_a_city()
-	{
-
-		$this->publishCourse(['city' => null])
-			->assertSessionhasErrors('city');
-	}
-
-	/**
-	 * a_course_should_have_a_title
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function test_a_course_should_have_a_address()
-	{
-
-		$this->publishCourse(['address' => null])
-			->assertSessionhasErrors('address');
-	}
-
-
 	public function publishCourse($overrides = []) 
 	{
 		$this->mockUser();

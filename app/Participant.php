@@ -11,6 +11,15 @@ class Participant extends Model
     
     use batchable, creator;
 
+    /*
+     * Return path of a single course
+    */
+
+    public function path() 
+    {
+        return 'participants/' . $this->id;
+    }
+
     /**
      *
      * A Participant has many batches

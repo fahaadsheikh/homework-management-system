@@ -48,10 +48,7 @@ $factory->define(App\Course::class, function ($faker) {
 	return [
 		'user_id'		=> App\User::all()->random()->id,
 		'title' 		=> $faker->sentence,
-		'body'			=> $faker->paragraph,
-		'country' 		=> $faker->country,
-		'city'			=> $faker->city,
-		'address'		=> $faker->address
+		'body'			=> $faker->paragraph
 	];
 });
 
@@ -62,10 +59,7 @@ $factory->define(App\Event::class, function ($faker) {
 	return [
 		'user_id'		=> App\User::all()->random()->id,
 		'title' 		=> $faker->sentence,
-		'body'			=> $faker->paragraph,
-		'country' 		=> $faker->country,
-		'city'			=> $faker->city,
-		'address'		=> $faker->address
+		'body'			=> $faker->paragraph
 	];
 });
 
@@ -87,6 +81,9 @@ $factory->defineAs(App\Batch::class, 'course', function ($faker) {
 		'user_id'		=> App\User::all()->random()->id,
 		'parent_id'		=> App\Course::all()->random()->id,
 		'parent_type'	=> 'App\Course',
+		'country' 		=> $faker->country,
+		'city'			=> $faker->city,
+		'address'		=> $faker->address,
 		'start_date'	=> $startingDate,
 		'end_date'		=> $endingDate,
 		'start_time'	=> $startingTime,
@@ -114,6 +111,9 @@ $factory->defineAs(App\Batch::class, 'event', function ($faker) {
 		'user_id'		=> App\User::all()->random()->id,
 		'parent_id'		=> App\Event::all()->random()->id,
 		'parent_type'	=> 'App\Event',
+		'country' 		=> $faker->country,
+		'city'			=> $faker->city,
+		'address'		=> $faker->address,
 		'start_date'	=> $startingDate,
 		'end_date'		=> $endingDate,
 		'start_time'	=> $startingTime,

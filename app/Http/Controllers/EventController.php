@@ -56,20 +56,14 @@ class EventController extends Controller
 
         $this->validate($request, [
                 'title' => 'required|max:255',
-                'body'  => 'required',
-                'country'  => 'required|max:255',
-                'city'  => 'required|max:255',
-                'address'  => 'required',
+                'body'  => 'required'
 
             ]);
         
         Event::create([
             'user_id'       => auth()->id(),
             'title'         => request('title'),
-            'body'          => request('body'),
-            'country'       => request('country'),
-            'city'          => request('city'),
-            'address'       => request('address')
+            'body'          => request('body')
             ]);
         return redirect( url('events') );
     }

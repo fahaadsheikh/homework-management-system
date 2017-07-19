@@ -27,7 +27,8 @@ class Batch extends Model
      *
      */
 
-    public function participant() {
+    public function participant() 
+    {
     	return $this->belongsToMany(Participant::class)->withTimestamps();
     }
    

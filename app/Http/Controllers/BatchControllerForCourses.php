@@ -19,8 +19,8 @@ class BatchControllerForCourses extends Controller
      */
     public function index(Batch $batch)
     {
-        $batch = $batch->load('creator', 'participant','participant.creator');
-        return view('batch.index', compact('batch'));
+        $batches = $batch->load('creator', 'participant','participant.creator');
+        return view('batch.index', compact('batches'));
     }
 
     /**
@@ -28,9 +28,10 @@ class BatchControllerForCourses extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, Course $course, Batch $batch)
     {
-        return view('batch.create');
+
+        return back();
     }
 
     /**
@@ -41,10 +42,26 @@ class BatchControllerForCourses extends Controller
      */
     public function store(Request $request, Course $course)
     {
+        $this->validate($request, [
+            'country'       => 'required',
+            'city'          => 'required',
+            'address'       => 'required',
+            'start_date'    => 'required',
+            'end_date'      => 'required',
+            'start_time'    => 'required',
+            'end_time'      => 'required',
+            'start_day'     => 'required',
+            'end_day'       => 'required',
+            'price'         => 'required'
+            ]);
+
         $course->addBatch([
             'user_id'       => auth()->id(),
-            'parent_id'     => request('parent_id'),
-            'parent_type'   => request('parent_type'),
+            'parent_id'     => $course->id,
+            'parent_type'   => 'App\Course',
+            'country'       => request('country'),
+            'city'          => request('city'),
+            'address'       => request('address'),
             'start_date'    => request('start_date'),
             'end_date'      => request('end_date'),
             'start_time'    => request('start_time'),
